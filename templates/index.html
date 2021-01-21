@@ -1,0 +1,66 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'index.css'%}">
+    <title>Covid-19 Forum</title>
+</head>
+<body>
+    <header>
+        <nav id='navbar'>
+            <h1 id='main_heading'>Covid-19 Discussions</h1>
+            <ul id='nav-list'>
+                {%if user.is_authenticated%}
+                <a href="userProfile/profile">Profile</a>
+                <a href="userProfile/logout">Logout</a>
+                {%else%}
+                <a href="register">Register</a>
+                <a href="login">Login</a>
+                {%endif%}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id='about'>
+            <p>This is a discussion forum for anything and everything related to the Covid-19 pandemic.
+                Feel free to ask, suggest or discuss any related topics here!
+            </p><br>
+            <p>Login to post and comment.</p><br>
+        </div>
+        {%for post in allPosts%}
+        <br>
+        <div class='post'>
+            <p class='post-topic'>{{post.topic}}</p>
+            <p class='post-date'>{{post.date}}</p><br>
+            <p class='post-name'>{{post.name}}</p><br>
+            <p class='post-statement'>{{post.post}}</p>
+        </div>
+        {%if user.is_authenticated%}
+        <div class='write-comment'>
+            <form class='comment-form' action="userProfile/postComment" method="post">
+                {%csrf_token%}
+            <textarea class='commentArea' placeholder="comment here" name="comment" ></textarea>
+            <input type="hidden" name="topic-id" value="{{post.id}}">
+            <input class='commentButton' type="submit" value="Comment">
+            </form>
+        </div>
+        {%endif%}
+        <br>
+        {%for comment in allComments%}
+            {%if comment.topic_id == post.id%}
+            <div class='comment-section'>
+                <p class='comment-name'>{{comment.name}}:</p>
+                <p class='comment-remarks'>{{comment.comments}}</p>
+                {%if comment.name == user.username%}
+                <a class='dlt-comment' href="{% url 'deleteComment' comment.id %}">Delete</a>  
+                {%endif%}   
+            </div>
+            {%endif%}
+        {%endfor%}
+        <br>
+        {%endfor%}
+    </main>
+</body>
+</html>

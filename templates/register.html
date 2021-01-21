@@ -1,0 +1,61 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'index.css'%}">
+    <link rel="stylesheet" href="{%static 'register.css'%}">
+    <title>Register</title>
+</head>
+<body>
+    <header>
+        <nav id='navbar'>
+            <h1 id='main_heading'>Covid-19 Discussions</h1>
+            <ul id='nav-list'>
+                <a href="login">Login</a>
+                <a href="/">Home</a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+       <div id="regContainer">
+            <form id="regForm" action="register" method="post">
+                {%csrf_token%}
+                <section>
+                    <label for="firstname">First Name:</label>
+                    <input type="text" name="firstname" placeholder="Enter your first name">
+                </section><br>
+                <section>
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" name="lastname" placeholder="Enter your last name">
+                </section><br>
+                <section>
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" placeholder="Create a username">
+                </section><br>
+                <section>
+                    <label for="email">Email-ID:</label>
+                    <input type="email" name="email" placeholder="Enter your email address">
+                </section><br>
+                <section>
+                    <label for="password1">Create Password:</label>
+                    <input type="password" name="password1" placeholder="Create a password">
+                </section><br>
+                <section>
+                    <label for="password2">Confirm Password:</label>
+                    <input type="password" name="password2" placeholder="Confirm your password">
+                </section><br>
+                <section>
+                    <input id='regButton' type="submit" value="register!">
+                </section>
+            </form>
+       </div>
+        </div>
+            {%for message in messages%}
+            <p>{{message}}</p>
+            {%endfor%}
+        <div>
+    </main>
+</body>
+</html>

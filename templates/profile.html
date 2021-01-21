@@ -1,0 +1,63 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'index.css'%}">
+    <link rel="stylesheet" href="{%static 'profile.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav id='navbar'>
+            <h1 id='main_heading'>Covid-19 Discussions</h1>
+            <ul id='nav-list'>
+                <a href="/">Home</a>
+                <a href="logout">Logout</a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2 id='greeting'>Hello, {{user.first_name|title}}</h2>
+        <form id='makePost' action="createPost" method="post">
+        {%csrf_token%}
+        <input id='topic' type="text" name="newTopic" placeholder="Enter topic..."><br>
+        <textarea id='post-text' name='newPost' placeholder="What's on your mind?" rows="5" cols="100" ></textarea><br>
+        <input id='postButton' type="submit" value="Post">
+        </form>
+        <h2 id='mypost'>My Posts:</h2>
+        {%for myPost in myPosts%}
+        <div class='post'>
+            <form action="deletePost" method="post">
+                {%csrf_token%}
+            <p class='post-topic'>{{myPost.topic}}</p>
+            <p class='post-date'>{{myPost.date}}</p><br>
+            <p class='post-statement'>{{myPost.post}}</p><br>
+            <input type="hidden" value="{{myPost.id}}" name="delTopicId">
+            <input class='deleteButton' type='submit' value="Delete">
+            </form>
+        </div>
+        <div class='write-comment'>
+            <form class='comment-form' action="postComment" method="post">
+                {%csrf_token%}
+                <textarea class='commentArea' name="comment" placeholder="Comment here" rows="2" cols="100"></textarea>
+                <input type="hidden" name="topic-id" value={{myPost.id}}>
+                <input class='commentButton' type="submit" value="Comment">
+            </form>
+        </div>
+        <br>
+        {%for comment in allComments%}
+            {%if comment.topic_id == myPost.id %}
+            <div class='comment-section'>
+                <p class='comment-name'>{{comment.name}}</p>
+                <p class='comment-remarks'>{{comment.comments}}</p>
+                <a class='dlt-comment'  href="{% url 'deleteComment' comment.id %}">Delete</a>
+            </div>
+            {%endif%}
+        {%endfor%}
+        <br>
+        {%endfor%}
+    </main>
+</body>
+</html>

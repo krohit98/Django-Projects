@@ -1,0 +1,43 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'index.css'%}">
+    <link rel="stylesheet" href="{%static 'login.css'%}">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+        <nav id='navbar'>
+            <h1 id='main_heading'>Covid-19 Discussions</h1>
+            <ul id=nav-list>
+                <a href="register">Register</a>
+                <a href="/">Home</a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="loginContainer">
+             <form id="loginForm" action="login" method="post">
+                {%csrf_token%}
+                <section>
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" placeholder="Enter your username">
+                </section><br>
+                <section>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" placeholder="Enter your password">
+                </section><br>
+                <section>
+                    <input id='loginButton' type="submit" value="log-in">
+                </section>
+             </form>
+            {%for message in messages%}
+            <p>{{message}}</p>
+            {%endfor%}
+        </div>
+     </main>
+</body>
+</html>
