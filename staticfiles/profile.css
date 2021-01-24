@@ -1,0 +1,49 @@
+#greeting{
+    width:80%;
+    margin:auto;
+    padding-top:100px;
+    margin-bottom:20px;
+    color: rgba(0,0,0,0.8);
+}
+#makePost{
+    background:rgba(0,0,10,0.8);
+    display:flex;
+    flex-direction:column;
+    width:80%;
+    margin:auto;
+    margin-bottom:20px;
+    padding:1%;
+}
+#topic{
+    font-size:15px;
+    padding:0.5%;
+}
+#post-text{
+    font-size:15px;
+    resize:none;
+    padding:0.5%;
+}
+#postButton{
+    border:none;
+    border-radius:5px;
+    color:white;
+    background: rgb(73, 168, 73); 
+    width:80px;
+    height:35px;
+    padding: 0 1%;
+}
+#mypost{
+    width:80%;
+    margin:auto;
+    margin-bottom:20px;
+    color: rgba(0,0,0,0.65);
+}
+.deleteButton{
+    border:none;
+    color:white;
+    background:rgb(255, 67, 67);
+    padding: 0 1%;
+    width:80px;
+    height:35px;
+    border-radius:5px;
+}

@@ -1,0 +1,40 @@
+#regContainer{
+    height:100vh;
+    width:100vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+#regForm{
+    border:1px solid black;
+    background:rgba(255,255,255,0.2);
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    height:400px;
+    width:700px;
+}
+#regForm section{
+    width:365px;
+    text-align:end;
+    font-size:20px;
+}
+#regForm section input{
+    font-size:15px;
+    padding:0.5%;
+}
+#regButton{
+    width:80%;
+    height:30px;
+    border:none;
+    background: rgb(0,214,125);
+    border-radius: 5px;
+    font-size:15px;
+    margin-right:10%;
+}
+#regButton:hover{
+    background:black;
+    color:white;
+}
